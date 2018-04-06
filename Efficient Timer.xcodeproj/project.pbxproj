@@ -12,7 +12,7 @@
 		3BA15A402077DE08004EB6F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BA15A3E2077DE08004EB6F1 /* Main.storyboard */; };
 		3BA15A422077DE08004EB6F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BA15A412077DE08004EB6F1 /* Assets.xcassets */; };
 		3BA15A452077DE08004EB6F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BA15A432077DE08004EB6F1 /* LaunchScreen.storyboard */; };
-		3BA15A4D2077DE1A004EB6F1 /* JATimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA15A4C2077DE1A004EB6F1 /* JATimer.swift */; };
+		3BA15A4D2077DE1A004EB6F1 /* EFTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA15A4C2077DE1A004EB6F1 /* EFTimer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +23,7 @@
 		3BA15A412077DE08004EB6F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3BA15A442077DE08004EB6F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3BA15A462077DE08004EB6F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3BA15A4C2077DE1A004EB6F1 /* JATimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JATimer.swift; sourceTree = "<group>"; };
+		3BA15A4C2077DE1A004EB6F1 /* EFTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFTimer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +59,7 @@
 				3BA15A3A2077DE08004EB6F1 /* AppDelegate.swift */,
 				3BA15A3C2077DE08004EB6F1 /* ViewController.swift */,
 				3BA15A3E2077DE08004EB6F1 /* Main.storyboard */,
-				3BA15A4C2077DE1A004EB6F1 /* JATimer.swift */,
+				3BA15A4C2077DE1A004EB6F1 /* EFTimer.swift */,
 				3BA15A412077DE08004EB6F1 /* Assets.xcassets */,
 				3BA15A432077DE08004EB6F1 /* LaunchScreen.storyboard */,
 				3BA15A462077DE08004EB6F1 /* Info.plist */,
@@ -141,7 +141,7 @@
 			files = (
 				3BA15A3D2077DE08004EB6F1 /* ViewController.swift in Sources */,
 				3BA15A3B2077DE08004EB6F1 /* AppDelegate.swift in Sources */,
-				3BA15A4D2077DE1A004EB6F1 /* JATimer.swift in Sources */,
+				3BA15A4D2077DE1A004EB6F1 /* EFTimer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

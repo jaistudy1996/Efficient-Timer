@@ -1,9 +1,8 @@
 //
-//  LocationManagerScheduler.swift
-//  VIPMobile
+// EFTimer.swift
 //
 //  Created by Jayant Arora on 4/3/18.
-//  Copyright © 2018 Vermont Information Processing. All rights reserved.
+//  Copyright © 2018 Jayant Arora. All rights reserved.
 //
 
 import Foundation
@@ -15,7 +14,7 @@ public enum CurrentState: Int {
 }
 
 @objc
-public class JATimer: NSObject {
+public class EFTimer: NSObject {
 
     // MARK: Private Properties
 

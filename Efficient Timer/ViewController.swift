@@ -11,8 +11,8 @@ import UIKit
 class ViewController: UIViewController {
 
     // MARK: Variables
-    var timer: JATimer!
-    var timer2: JATimer!
+    var timer: EFTimer!
+    var timer2: EFTimer!
 
     // MARK: Outlets
     @IBOutlet weak var outputLabel: UILabel!
@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        timer = JATimer(name: "Timer 1", interval: 10, completion: {
+        timer = EFTimer(name: "Timer 1", interval: 10, completion: {
             self.outputLabel.text = "Timer 1 ran" // not the best approach. Should not be used from background
                                                   // thread
             print("Timer 1 ran")
@@ -29,7 +29,7 @@ class ViewController: UIViewController {
 
         timer.inititalize()
 
-        timer2 = JATimer(name: "Timer 2", interval: 15, completion: {
+        timer2 = EFTimer(name: "Timer 2", interval: 15, completion: {
             self.outputLabel2.text = "Timer 2 ran"  // not the best approach. Should not be used from background
                                                     // thread
             print("Timer 2 ran")
