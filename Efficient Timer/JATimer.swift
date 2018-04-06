@@ -8,7 +8,8 @@
 
 import Foundation
 
-enum CurrentState {
+@objc
+public enum CurrentState: Int {
     case running
     case suspended
 }
@@ -16,9 +17,11 @@ enum CurrentState {
 @objc
 public class JATimer: NSObject {
 
+    // MARK: Private Properties
+
     private var name: String = ""
     private var initialized = false
-    private var running: CurrentState = .suspended
+    private var timerState: CurrentState = .suspended
     private var queue: DispatchQueue?
     private var timerForQueue: Int = 0
     private var block: () -> Void = { }
@@ -26,6 +29,8 @@ public class JATimer: NSObject {
     private override init() {
         super.init()
     }
+
+    // MARK: Public Properties
 
     @objc
     public convenience init(name: String, interval: Int, completion: (@escaping () -> Void)) {
@@ -42,104 +47,62 @@ public class JATimer: NSObject {
         return queue
     }
 
+    deinit {
+        queue = nil
+    }
+
+    /// This function needs to be called to initialize timer after instantiation
     @objc
     public func inititalize() {
         if let _ = self.getQueue() {
             timedBlock()
         }
         initialized = true
+        timerState = .running
     }
+
+    @objc
+    public func isInitialized() -> Bool{
+        return initialized
+    }
+
+    @objc
+    public func getCurrentState() -> CurrentState {
+        return timerState
+    }
+
+    @objc
+    public func pause() {
+        guard initialized == true else {
+            fatalError("Timer needs to be initialized before you can pause it.")
+        }
+        guard timerState == .running else {
+            fatalError("Attempt to pause timer when it is already paused.")
+        }
+        queue?.suspend()
+        timerState = .suspended
+    }
+
+    @objc
+    public func resume() {
+        guard initialized == true else {
+            fatalError("Timer needs to be initialized before you can reusme it.")
+        }
+        guard timerState == .suspended else {
+            fatalError("Attempt to resume timer when it is already running.")
+        }
+        queue?.resume()
+        timerState = .running
+    }
+
+    // MARK: Private Properties
 
     private func timedBlock() {
         queue?.asyncAfter(deadline: .now() + .seconds(timerForQueue)) {
             self.block()
             self.timedBlock()
         }
-        print("Test: seconds: \(timerForQueue)")
+        print("Timed Block set up")
     }
 
 }
-
-//
-//import Foundation
-//
-//@objc
-//public class LocationManagerScheduler: NSObject {
-//    private static var frequentCounter = 0
-//    private static var occasionalCounter = 0
-//    private static let frequentInterval = DispatchQueue(label: "com.vtinfo.locationScheduler.Frequent")
-//    private static let occasionalInterval = DispatchQueue(label: "com.vtinfo.locationScheduler.Occasional")
-//
-//    @objc
-//    static var currentInterval: locationUpdateInterval = .occasional {
-//        didSet {
-//            guard currentInterval != oldValue else { return }
-//
-//            switch currentInterval {
-//            case .frequent:
-//                switchQueue()
-//            case .occasional:
-//                switchQueue()
-//            case .none:
-//                suspendAllQueues()
-//            }
-//        }
-//    }
-//
-//    private class func switchQueue() {
-//        if occasionalCounter == 0 {
-//            occasionalInterval.suspend()
-//            occasionalCounter -= 1
-//
-//            frequentInterval.resume()
-//            frequentCounter = 1
-//        }
-//
-//        if frequentCounter == 0 {
-//            frequentInterval.suspend()
-//            frequentCounter -= 1
-//
-//            occasionalInterval.resume()
-//            occasionalCounter = 1
-//        }
-//    }
-//
-//    private class func suspendAllQueues() {
-//        if occasionalCounter == 0 {
-//            occasionalInterval.suspend()
-//            occasionalCounter -= 1
-//        }
-//
-//        if frequentCounter == 0 {
-//            frequentInterval.suspend()
-//            frequentCounter -= 1
-//        }
-//    }
-//
-//    private func frequentIntervalHandler() {
-//        print("[LOC TEST] Frequent running")
-//        LocationManagerScheduler.frequentInterval.asyncAfter(deadline: .now()  10) {
-//            self.frequentIntervalHandler()
-//        }
-//    }
-//
-//    private func occassionalIntervalHandler() {
-//        print("[LOC TEST] Occassional running")
-//        LocationManagerScheduler.occasionalInterval.asyncAfter(deadline: .now()  30) {
-//            self.occassionalIntervalHandler()
-//        }
-//    }
-//
-//    public override init() {
-//        LocationManagerScheduler.frequentInterval.asyncAfter(deadline: .now()  10) {
-//            self.frequentIntervalHandler()
-//        }
-//
-//        LocationManagerScheduler.occasionalInterval.asyncAfter(deadline: .now()  30) {
-//            self.occassionalIntervalHandler()
-//        }
-//
-//
-//    }
-//}
-
